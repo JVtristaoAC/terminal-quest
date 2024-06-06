@@ -1,15 +1,18 @@
 <script lang="ts" setup>
-// All imports are automatic but if you want to import anything,
-// remember to import from 'vue-termui':
-// import { ref } from 'vue-termui'
 
-const n = ref(0)
 const id = ref(0)
 const IsPerfectSquare = ref(false)
 const IsRepeated = ref(false)
 const values = ref<number[]>([0,0,0, 0,0,0, 0,0,0])
 
+onMounted(() => {
+  console.clear()
+})
+
 onKeyData(['+', 'ArrowRight', 'ArrowUp'], () => {
+  if(values.value[id.value] >= 99){
+    return;
+  }
   values.value[id.value]++
 })
 
@@ -28,6 +31,7 @@ onKeyData('q', () => {
 onKeyData('c', () => {
   console.clear()
   values.value = [0,0,0, 0,0,0, 0,0,0]
+  id.value = 0
 })
 
 onKeyData('Tab', () => {
@@ -43,8 +47,8 @@ const verifyPerfectSquare = () => {
   const secondColumn = values.value[1] + values.value[4] + values.value[7]
   const thirdColumn = values.value[2] + values.value[5] + values.value[8]
 
-  //return !IsRepeated 
-  return firstRow === secondRow 
+  return !IsRepeated.value
+        && firstRow === secondRow 
         && secondRow === thirdRow 
         && thirdRow === firstColumn 
         && firstColumn === secondColumn 
@@ -55,53 +59,135 @@ const verifyPerfectSquare = () => {
 useInterval(() => {
   IsRepeated.value = values.value.some((value, index) => values.value.indexOf(value) !== index)
   IsPerfectSquare.value = verifyPerfectSquare();
-}, 600)
+}, 500)
 
 </script>
 
 <template>
   <Box
-    :padding="2"
-    :margin="2"
-    width="100%"
-    :maxWidth="50"
     flexDirection="column"
-    borderColor="yellowBright"
-    borderStyle="round"
+   :borderColor="IsPerfectSquare ? 'yellow' : 'gray'"
+    borderStyle="arrow"
   >
     <Box flexDirection="column">
-      <Box>
-        <Text id=0 :color="id === 0 ? 'yellow' : 'yellowBright'" :underline="id === 0" bold>{{ values[0] }}</Text>
-        <Text id=1 :color="id === 1 ? 'yellow' : 'yellowBright'" :underline="id === 1" bold>{{ values[1] }}</Text>
-        <Text id=2 :color="id === 2 ? 'yellow' : 'yellowBright'" :underline="id === 2" bold>{{ values[2] }}</Text>
-      </Box>
-      <Text>
-        <Text id=3 :color="id === 3 ? 'yellow' : 'yellowBright'" :underline="id === 3" bold>{{ values[3] }}</Text>
-        <Text id=4 :color="id === 4 ? 'yellow' : 'yellowBright'" :underline="id === 4" bold>{{ values[4] }}</Text>
-        <Text id=5 :color="id === 5 ? 'yellow' : 'yellowBright'" :underline="id === 5" bold>{{ values[5] }}</Text>
-      </Text>
-      <Text>
-        <Text id=6 :color="id === 6 ? 'yellow' : 'yellowBright'" :underline="id === 6" bold>{{ values[6] }}</Text>
-        <Text id=7 :color="id === 7 ? 'yellow' : 'yellowBright'" :underline="id === 7" bold>{{ values[7] }}</Text>
-        <Text id=8 :color="id === 8 ? 'yellow' : 'yellowBright'" :underline="id === 8" bold>{{ values[8] }}</Text>
-      </Text>
-    </Box>
+      <Box alignSelf="center">
+        <Box 
+          alignItems="center"
+          justifyContent="center"
+          :borderColor="IsPerfectSquare ? 'yellow' : id === 0 ? 'blue' : 'gray'"
+          borderStyle="classic"
+          width="30%"
+        >
+          <Text id=0 :color="IsPerfectSquare ? 'yellow' : id === 0 ? 'blue' : 'black'" :underline="id === 0" bold>{{ values[0] }}</Text>
+        </Box>
 
-    <Box :marginY="1">
-      <Text :color="IsPerfectSquare ? 'yellow' : 'yellowBright'">{{ IsPerfectSquare ? 'Is a Perfect square 😮' : ' Is not a Perfect square 😥' }}</Text>
+        <Box 
+          alignItems="center"
+          justifyContent="center"
+          :borderColor="IsPerfectSquare ? 'yellow' : id === 1 ? 'blue' : 'gray'"
+          borderStyle="classic"
+          width="30%"
+        >
+          <Text id=1 :color="IsPerfectSquare ? 'yellow' : id === 1 ? 'blue' : 'black'" :underline="id === 1" bold>{{ values[1] }}</Text>
+        </Box>
+
+        <Box 
+          alignItems="center"
+          justifyContent="center"
+          :borderColor="IsPerfectSquare ? 'yellow' : id === 2 ? 'blue' : 'gray'"
+          borderStyle="classic"
+          width="30%"
+        >
+          <Text id=2 :color="IsPerfectSquare ? 'yellow' : id === 2 ? 'blue' : 'black'" :underline="id === 2" bold>{{ values[2] }}</Text>
+        </Box>
+      </Box>
+
+      <Box alignSelf="center">
+        <Box 
+          alignItems="center"
+          justifyContent="center"
+          :borderColor="IsPerfectSquare ? 'yellow' : id === 3 ? 'blue' : 'gray'"
+          borderStyle="classic"
+          width="30%"
+        >
+          <Text id=3 :color="IsPerfectSquare ? 'yellow' : id === 3 ? 'blue' : 'black'" :underline="id === 3" bold>{{ values[3] }}</Text>
+        </Box>
+
+        <Box 
+          alignItems="center"
+          justifyContent="center"
+          :borderColor="IsPerfectSquare ? 'yellow' : id === 4 ? 'blue' : 'gray'"
+          borderStyle="classic"
+          width="30%"
+        >
+          <Text id=4 :color="IsPerfectSquare ? 'yellow' : id === 4 ? 'blue' : 'black'" :underline="id === 4" bold>{{ values[4] }}</Text>
+        </Box>
+
+        <Box 
+          alignItems="center"
+          justifyContent="center"
+          :borderColor="IsPerfectSquare ? 'yellow' : id === 5 ? 'blue' : 'gray'"
+          borderStyle="classic"
+          width="30%"
+        >
+          <Text id=5 :color="IsPerfectSquare ? 'yellow' : id === 5 ? 'blue' : 'black'" :underline="id === 5" bold>{{ values[5] }}</Text>
+        </Box>
+      </Box>
+
+      <Box alignSelf="center">
+        <Box 
+          alignItems="center"
+          justifyContent="center"
+          :borderColor="IsPerfectSquare ? 'yellow' : id === 6 ? 'blue' : 'gray'"
+          borderStyle="classic"
+          width="30%"
+        >
+          <Text id=6 :color="IsPerfectSquare ? 'yellow' : id === 6 ? 'blue' : 'black'" :underline="id === 6" bold>{{ values[6] }}</Text>
+        </Box>
+
+        <Box 
+          alignItems="center"
+          justifyContent="center"
+          :borderColor="IsPerfectSquare ? 'yellow' : id === 7 ? 'blue' : 'gray'"
+          borderStyle="classic"
+          width="30%"
+        >
+          <Text id=7 :color="IsPerfectSquare ? 'yellow' : id === 7 ? 'blue' : 'black'" :underline="id === 7" bold>{{ values[7] }}</Text>
+        </Box>
+
+        <Box 
+          alignItems="center"
+          justifyContent="center"
+          :borderColor="IsPerfectSquare ? 'yellow' : id === 8 ? 'blue' : 'gray'"
+          borderStyle="classic"
+          width="30%"
+        >
+          <Text id=8 :color="IsPerfectSquare ? 'yellow' : id === 8 ? 'blue' : 'black'" :underline="id === 8" bold>{{ values[8] }}</Text>
+        </Box>
+      </Box>
+
+      <Box 
+        :marginY="1"
+        alignSelf="center"
+      >
+        <Text :color="IsPerfectSquare ? 'yellow' : 'magentaBright'">{{ IsPerfectSquare ? '✧ Is a magic square ˃ᴗ˂ ✧ ' : ' Is not a magic square ಥ_ಥ' }}</Text>
+      </Box>
     </Box>
   </Box>
 
   <Text>
-    <Text color="red" bold> -</Text>/<Text bold color="green">+</Text> to change it
+    <Text color="magentaBright" bold> -</Text>/<Text bold color="blue">+</Text> to change it
   </Text>
+
   <Text>
-    Press <Text color="yellow" bold>q</Text> to exit
+    Press <Text color="blue" bold>q</Text> to exit
   </Text>
+
   <Text>
-    Press <Text color="yellow" bold>Tab</Text> to switch between numbers
+    Press <Text color="blue" bold>Tab</Text> to switch between numbers
   </Text>
+
   <Text>
-    Press <Text color="yellow" bold>c</Text> to clear the screen
+    Press <Text color="blue" bold>c</Text> to clear the screen
   </Text>
 </template>
