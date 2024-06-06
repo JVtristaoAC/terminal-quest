@@ -1,11 +1,44 @@
-# Vue 3 + Typescript + Vite
+# Terminal Quest
+This is a terminal-based implementation of the classic Magic Square game, built using Vue TermUI. Magic Square is a mathematical puzzle where the player aims to arrange numbers in a square grid so that the sum of numbers in each row, column, and diagonal is the same.
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Features
 
-## Recommended IDE Setup
+ - Terminal-based UI using Vue TermUI, providing an interactive experience.
+ - Dynamic rendering of the grid and input validation for a smooth user experience.
+ - Game completion detection to inform the player when they have solved the puzzle.
+ - Error handling and feedback to guide the player through the game.
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+## Installation
+- Clone this repository:
+    ```bash
+      git clone https://github.com/JVtristaoAC/terminal-quest.git
+    ```
 
-## Type Support For `.vue` Imports in TS
+- Navigate to the project directory:
+    ```bash
+      cd terminal-quest
+    ```
+  
+- Install dependencies:
+    ```bash
+      npm install
+    ```
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+## Usage
+To start the game, run:
+ ```bash
+  npm run dev
+  ```
+
+Follow the on-screen instructions to play the game.
+
+<div align="center">
+  <img width="40%" src="https://github.com/JVtristaoAC/terminal-quest/assets/72676389/eb1a861c-bec1-468f-af6a-f04c5e70f50c" />
+  <img width="40%" src="https://github.com/JVtristaoAC/terminal-quest/assets/72676389/a7860ca6-f688-4451-9733-fcbfefc496d1" />
+</div>
+
+## Contributing
+Contributions are welcome! Feel free to submit bug reports, feature requests, or pull requests.
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
